@@ -52,9 +52,9 @@ curl -o MTProtoProxyInstall.sh -L https://git.io/fjo34 && bash MTProtoProxyInsta
 在您的终端上复制并执行以下每一行：
 ```狂欢
 pid=$(systemctl show --property MainPID mtprotoproxy)
-arrPID=(${pid//=/})
+arrPID=(${pid//=/ })
 pid=${arrPID[1]}
-杀死-USR2“$pid”
+kill -USR2 "$pid"
 ```
 ### API
 此脚本为您提供安装后 API 支持以控制代理。 [更多信息](https://github.com/HirbodBehnam/MTProtoProxyInstaller/wiki/API-For-Python-Script)
@@ -65,7 +65,7 @@ pid=${arrPID[1]}
 curl -o MTProtoProxyOfficialInstall.sh -L https://git.io/fjo3u && bash MTProtoProxyOfficialInstall.sh
 ```
 并等待安装完成，您将在安装后看到链接。
-####＃ 工人
+#### 工人
 每个工作人员可以在现代 CPU 上处理超过 10000 个连接。 连接将在工作人员之间分配。 不要产生超过 CPU 线程数的工作线程。
 #### 自动安装（无钥匙）
 您可以使用参数运行脚本以启用“无密钥安装程序”。
@@ -92,7 +92,7 @@ curl -o MTProtoProxyOfficialInstall.sh -L https://git.io/fjo3u && bash MTProtoPr
 curl -o MTProtoProxyOfficialInstall.sh -L https://git.io/fjo3u && bash MTProtoProxyOfficialInstall.sh --port 3033  --secret 0123456789abcdef0123456789abcdef --tag 9cd18205e07716f93152af6d44366e13 --tls "www.cloudflare-cn.com"
 ```
 #### 管理代理
-####＃＃ 服务
+#### 服务
 使用 `systemctl start MTProxy` 启动，使用 `systemctl stop MTProxy` 停止，使用 `systemctl status MTProxy -l` 查看脚本日志。
 ##### 配置
 服务文件保存在“/etc/systemd/system/MTProxy.service”中。 您可以手动编辑它。 在 `/opt/MTProxy/objs/bin` 中还有一个由脚本创建的名为 `mtconfig.conf` 的文件。 它用于通过脚本加载代理配置。 *你不能删除这个文件*，但是，你可以编辑它。 此外，如果您启用了自动更新程序，您将拥有另外两个名为“updater.sh”和“updater.log”的文件
